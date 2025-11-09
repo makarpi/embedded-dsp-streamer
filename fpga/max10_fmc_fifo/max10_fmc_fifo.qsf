@@ -1,0 +1,404 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2023  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and any partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details, at
+# https://fpgasoftware.intel.com/eula.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
+# Date created = 10:42:27  November 09, 2025
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		max10_fmc_fifo_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Intel recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "MAX 10"
+set_global_assignment -name DEVICE 10M25DAF484C8G
+set_global_assignment -name TOP_LEVEL_ENTITY max10_fmc_fifo
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 22.1STD.2
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:42:27  NOVEMBER 09, 2025"
+set_global_assignment -name LAST_QUARTUS_VERSION "22.1std.2 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
+set_global_assignment -name EDA_SIMULATION_TOOL "Questa Intel FPGA (Verilog)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_timing
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
+set_global_assignment -name BDF_FILE max10_fmc_fifo.bdf
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity STM32H745_fpga -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity STM32H745_fpga -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -entity STM32H745_fpga -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity STM32H745 -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity STM32H745 -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -entity STM32H745 -section_id Top
+set_location_assignment PIN_M21 -to Z1_3
+set_location_assignment PIN_M22 -to Z1_42
+set_location_assignment PIN_L22 -to Z1_41
+set_location_assignment PIN_N21 -to Z1_43
+set_location_assignment PIN_P20 -to Z1_6
+set_location_assignment PIN_P18 -to Z1_51
+set_location_assignment PIN_P19 -to Z1_49
+set_location_assignment PIN_R18 -to Z1_13
+set_location_assignment PIN_N22 -to Z1_4
+set_location_assignment PIN_P14 -to Z1_56
+set_location_assignment PIN_P21 -to Z1_5
+set_location_assignment PIN_P15 -to Z1_55
+set_location_assignment PIN_P22 -to Z1_44
+set_location_assignment PIN_U22 -to Z1_47
+set_location_assignment PIN_R22 -to Z1_45
+set_location_assignment PIN_U21 -to Z1_48
+set_location_assignment PIN_R20 -to Z1_10
+set_location_assignment PIN_T18 -to Z1_54
+set_location_assignment PIN_T20 -to Z1_8
+set_location_assignment PIN_T19 -to Z1_50
+set_location_assignment PIN_T22 -to Z1_46
+set_location_assignment PIN_R14 -to Z1_17
+set_location_assignment PIN_T21 -to Z1_7
+set_location_assignment PIN_R15 -to Z1_16
+set_location_assignment PIN_V22 -to Z1_23
+set_location_assignment PIN_U20 -to Z1_9
+set_location_assignment PIN_V21 -to Z1_24
+set_location_assignment PIN_V20 -to Z1_63
+set_location_assignment PIN_Y21 -to Z1_26
+set_location_assignment PIN_W20 -to Z1_11
+set_location_assignment PIN_Y20 -to Z1_27
+set_location_assignment PIN_W19 -to Z1_52
+set_location_assignment PIN_W22 -to Z1_64
+set_location_assignment PIN_U19 -to Z1_12
+set_location_assignment PIN_Y22 -to Z1_25
+set_location_assignment PIN_V18 -to Z1_14
+set_location_assignment PIN_AA22 -to Z1_65
+set_location_assignment PIN_U17 -to Z1_15
+set_location_assignment PIN_AA21 -to Z1_66
+set_location_assignment PIN_U18 -to Z1_53
+set_location_assignment PIN_AB5 -to Z1_74
+set_location_assignment PIN_AA7 -to Z1_72
+set_location_assignment PIN_AA5 -to Z1_35
+set_location_assignment PIN_AA6 -to Z1_34
+set_location_assignment PIN_AB4 -to Z1_36
+set_location_assignment PIN_P10 -to Z1_30
+set_location_assignment PIN_AA3 -to Z1_76
+set_location_assignment PIN_R10 -to Z1_69
+set_location_assignment PIN_Y4 -to Z1_67
+set_location_assignment PIN_W8 -to Z1_71
+set_location_assignment PIN_Y3 -to Z1_37
+set_location_assignment PIN_W7 -to Z1_20
+set_location_assignment PIN_AB3 -to Z1_75
+set_location_assignment PIN_W10 -to Z1_18
+set_location_assignment PIN_AB2 -to Z1_38
+set_location_assignment PIN_W9 -to Z1_57
+set_location_assignment PIN_Y8 -to Z1_32
+set_location_assignment PIN_P9 -to Z1_70
+set_location_assignment PIN_Y7 -to Z1_33
+set_location_assignment PIN_R9 -to Z1_31
+set_location_assignment PIN_Y6 -to Z1_73
+set_location_assignment PIN_V8 -to Z1_58
+set_location_assignment PIN_Y5 -to Z1_62
+set_location_assignment PIN_V7 -to Z1_19
+set_location_assignment PIN_AA2 -to Z1_77
+set_location_assignment PIN_W3 -to Z1_29
+set_location_assignment PIN_AA1 -to Z1_78
+set_location_assignment PIN_W4 -to Z1_28
+set_location_assignment PIN_Y2 -to Z1_79
+set_location_assignment PIN_U7 -to Z1_59
+set_location_assignment PIN_Y1 -to Z1_80
+set_location_assignment PIN_U6 -to Z1_60
+set_location_assignment PIN_V5 -to Z1_22
+set_location_assignment PIN_W6 -to Z1_21
+set_location_assignment PIN_V4 -to Z1_68
+set_location_assignment PIN_W5 -to Z1_61
+set_location_assignment PIN_N5 -to CLK0
+set_location_assignment PIN_W17 -to Z2_40
+set_location_assignment PIN_AA20 -to Z2_39
+set_location_assignment PIN_W18 -to Z2_38
+set_location_assignment PIN_AB21 -to Z2_37
+set_location_assignment PIN_Y19 -to Z2_36
+set_location_assignment PIN_Y18 -to Z2_35
+set_location_assignment PIN_W16 -to Z2_34
+set_location_assignment PIN_AA19 -to Z2_33
+set_location_assignment PIN_V15 -to Z2_32
+set_location_assignment PIN_AB20 -to Z4_41
+set_location_assignment PIN_Y17 -to Z4_23
+set_location_assignment PIN_P13 -to Z4_19
+set_location_assignment PIN_AA17 -to Z4_62
+set_location_assignment PIN_AA16 -to Z4_7
+set_location_assignment PIN_V16 -to Z4_78
+set_location_assignment PIN_AB16 -to Z4_80
+set_location_assignment PIN_U15 -to Z4_46
+set_location_assignment PIN_Y16 -to Z4_61
+set_location_assignment PIN_W15 -to Z4_22
+set_location_assignment PIN_AA15 -to Z4_45
+set_location_assignment PIN_V14 -to Z4_59
+set_location_assignment PIN_AB15 -to Z4_3
+set_location_assignment PIN_Y14 -to Z4_21
+set_location_assignment PIN_AA14 -to Z4_6
+set_location_assignment PIN_Y13 -to Z4_10
+set_location_assignment PIN_AB14 -to Z4_4
+set_location_assignment PIN_AB19 -to Z4_42
+set_location_assignment PIN_AA13 -to Z4_9
+set_location_assignment PIN_R13 -to Z4_11
+set_location_assignment PIN_W13 -to Z4_49
+set_location_assignment PIN_W14 -to Z4_60
+set_location_assignment PIN_W12 -to Z4_29
+set_location_assignment PIN_V13 -to Z4_50
+set_location_assignment PIN_AB13 -to Z4_43
+set_location_assignment PIN_AA12 -to Z4_48
+set_location_assignment PIN_AB12 -to Z4_44
+set_location_assignment PIN_AA11 -to Z4_47
+set_location_assignment PIN_AB11 -to Z4_5
+set_location_assignment PIN_P12 -to Z4_70
+set_location_assignment PIN_AB10 -to Z4_8
+set_location_assignment PIN_R12 -to Z4_69
+set_location_assignment PIN_Y11 -to Z4_68
+set_location_assignment PIN_V12 -to Z4_30
+set_location_assignment PIN_W11 -to Z4_67
+set_location_assignment PIN_V11 -to Z4_28
+set_location_assignment PIN_C9 -to Z2_31
+set_location_assignment PIN_A9 -to Z2_30
+set_location_assignment PIN_B10 -to Z2_29
+set_location_assignment PIN_A8 -to Z2_28
+set_location_assignment PIN_J11 -to Z2_27
+set_location_assignment PIN_A7 -to Z2_26
+set_location_assignment PIN_H12 -to Z2_25
+set_location_assignment PIN_B11 -to Z2_24
+set_location_assignment PIN_C10 -to Z2_23
+set_location_assignment PIN_B12 -to Z2_22
+set_location_assignment PIN_C11 -to Z2_21
+set_location_assignment PIN_L8 -to Z2_12
+set_location_assignment PIN_D12 -to Z4_31
+set_location_assignment PIN_A11 -to Z4_51
+set_location_assignment PIN_A10 -to Z4_12
+set_location_assignment PIN_C12 -to Z4_13
+set_location_assignment PIN_A12 -to Z4_52
+set_location_assignment PIN_J12 -to Z4_18
+set_location_assignment PIN_A13 -to Z4_14
+set_location_assignment PIN_H13 -to Z4_71
+set_location_assignment PIN_D13 -to Z4_33
+set_location_assignment PIN_E13 -to Z4_20
+set_location_assignment PIN_E12 -to Z4_32
+set_location_assignment PIN_D14 -to Z4_74
+set_location_assignment PIN_B14 -to Z4_54
+set_location_assignment PIN_C13 -to Z4_72
+set_location_assignment PIN_A14 -to Z4_53
+set_location_assignment PIN_C14 -to Z4_15
+set_location_assignment PIN_B15 -to Z4_55
+set_location_assignment PIN_J13 -to Z4_34
+set_location_assignment PIN_A15 -to Z4_16
+set_location_assignment PIN_H14 -to Z4_73
+set_location_assignment PIN_A16 -to Z4_17
+set_location_assignment PIN_C15 -to Z4_56
+set_location_assignment PIN_B16 -to Z4_58
+set_location_assignment PIN_C16 -to Z4_57
+set_location_assignment PIN_A17 -to Z4_24
+set_location_assignment PIN_E14 -to Z4_35
+set_location_assignment PIN_A18 -to Z4_25
+set_location_assignment PIN_D15 -to Z4_36
+set_location_assignment PIN_A19 -to Z4_26
+set_location_assignment PIN_B17 -to Z4_63
+set_location_assignment PIN_A20 -to Z4_27
+set_location_assignment PIN_C18 -to Z4_79
+set_location_assignment PIN_B19 -to Z4_65
+set_location_assignment PIN_F15 -to Z4_76
+set_location_assignment PIN_C19 -to Z4_66
+set_location_assignment PIN_F16 -to Z4_38
+set_location_assignment PIN_C17 -to Z4_64
+set_location_assignment PIN_E15 -to Z4_75
+set_location_assignment PIN_D17 -to Z4_77
+set_location_assignment PIN_E16 -to Z4_37
+set_location_assignment PIN_L1 -to Z2_1
+set_location_assignment PIN_M3 -to Z2_2
+set_location_assignment PIN_D3 -to Z2_18
+set_location_assignment PIN_D2 -to Z2_17
+set_location_assignment PIN_C1 -to Z2_16
+set_location_assignment PIN_D1 -to Z2_15
+set_location_assignment PIN_K2 -to Z2_14
+set_location_assignment PIN_L2 -to Z2_13
+set_location_assignment PIN_E1 -to Z2_11
+set_location_assignment PIN_L9 -to Z2_10
+set_location_assignment PIN_F2 -to Z2_9
+set_location_assignment PIN_H1 -to Z2_8
+set_location_assignment PIN_G1 -to Z2_7
+set_location_assignment PIN_J1 -to Z2_6
+set_location_assignment PIN_F1 -to Z2_5
+set_location_assignment PIN_M4 -to Z2_4
+set_location_assignment PIN_K1 -to Z2_3
+set_location_assignment PIN_L15 -to Z3_33
+set_location_assignment PIN_E11 -to Z3_32
+set_location_assignment PIN_C8 -to Z3_31
+set_location_assignment PIN_E10 -to Z3_30
+set_location_assignment PIN_C7 -to Z3_29
+set_location_assignment PIN_J10 -to Z3_28
+set_location_assignment PIN_B7 -to Z3_27
+set_location_assignment PIN_H11 -to Z3_26
+set_location_assignment PIN_A6 -to Z3_25
+set_location_assignment PIN_D8 -to Z3_24
+set_location_assignment PIN_A5 -to Z3_23
+set_location_assignment PIN_D9 -to Z3_22
+set_location_assignment PIN_A4 -to Z3_21
+set_location_assignment PIN_E9 -to Z3_18
+set_location_assignment PIN_D7 -to Z3_17
+set_location_assignment PIN_A2 -to Z3_16
+set_location_assignment PIN_A3 -to Z3_15
+set_location_assignment PIN_B3 -to Z3_14
+set_location_assignment PIN_B5 -to Z3_13
+set_location_assignment PIN_B4 -to Z3_12
+set_location_assignment PIN_C4 -to Z3_11
+set_location_assignment PIN_E8 -to Z3_10
+set_location_assignment PIN_C5 -to Z3_9
+set_location_assignment PIN_D5 -to Z3_7
+set_location_assignment PIN_B2 -to Z3_6
+set_location_assignment PIN_B1 -to Z3_5
+set_location_assignment PIN_D6 -to Z3_4
+set_location_assignment PIN_C3 -to Z3_3
+set_location_assignment PIN_C2 -to Z3_1
+set_location_assignment PIN_E6 -to Z3_2
+set_location_assignment PIN_F7 -to Z3_8
+set_location_assignment PIN_V9 -to SW_S5
+set_location_assignment PIN_P11 -to SW_DIP[3]
+set_location_assignment PIN_R11 -to SW_DIP[2]
+set_location_assignment PIN_M8 -to SW_DIP[0]
+set_location_assignment PIN_N4 -to SW_DIP[1]
+set_location_assignment PIN_M9 -to 25MHz
+set_location_assignment PIN_N14 -to FMC_D[23]
+set_location_assignment PIN_N15 -to FMC_D[21]
+set_location_assignment PIN_K22 -to FMC_A[10]
+set_location_assignment PIN_K21 -to FMC_D[12]
+set_location_assignment PIN_E18 -to FMC_NWAIT
+set_location_assignment PIN_G17 -to FMC_A[14]
+set_location_assignment PIN_H17 -to FMC_A[15]
+set_location_assignment PIN_D18 -to FMC_NE[4]
+set_location_assignment PIN_H20 -to FMC_D[2]
+set_location_assignment PIN_H18 -to FMC_D[19]
+set_location_assignment PIN_J20 -to FMC_D[6]
+set_location_assignment PIN_H19 -to FMC_D[17]
+set_location_assignment PIN_A21 -to FMC_D[28]
+set_location_assignment PIN_J15 -to FMC_D[1]
+set_location_assignment PIN_B20 -to FMC_NBL[3]
+set_location_assignment PIN_J14 -to FMC_D[26]
+set_location_assignment PIN_B21 -to FMC_D[29]
+set_location_assignment PIN_E17 -to FMC_NWE
+set_location_assignment PIN_B22 -to FMC_NBL[2]
+set_location_assignment PIN_F17 -to FMC_D[3]
+set_location_assignment PIN_K20 -to FMC_D[8]
+set_location_assignment PIN_J18 -to FMC_D[27]
+set_location_assignment PIN_K19 -to FMC_D[0]
+set_location_assignment PIN_K18 -to FMC_D[15]
+set_location_assignment PIN_D19 -to FMC_NE[2]
+set_location_assignment PIN_K15 -to FMC_D[14]
+set_location_assignment PIN_C20 -to FMC_NBL[1]
+set_location_assignment PIN_K14 -to FMC_A[12]
+set_location_assignment PIN_E20 -to FMC_A[1]
+set_location_assignment PIN_F18 -to FMC_A[7]
+set_location_assignment PIN_F19 -to FMC_NOE
+set_location_assignment PIN_E19 -to FMC_NE[1]
+set_location_assignment PIN_L20 -to FMC_D[4]
+set_location_assignment PIN_L18 -to FMC_D[13]
+set_location_assignment PIN_L19 -to FMC_A[13]
+set_location_assignment PIN_M18 -to FMC_D[11]
+set_location_assignment PIN_C21 -to FMC_D[30]
+set_location_assignment PIN_D21 -to FMC_A[2]
+set_location_assignment PIN_L14 -to FMC_A[6]
+set_location_assignment PIN_C22 -to FMC_NBL[0]
+set_location_assignment PIN_F20 -to FMC_A[5]
+set_location_assignment PIN_D22 -to FMC_D[31]
+set_location_assignment PIN_F21 -to FMC_NE[3]
+set_location_assignment PIN_N20 -to FMC_D[20]
+set_location_assignment PIN_N19 -to FMC_D[22]
+set_location_assignment PIN_M20 -to FMC_D[10]
+set_location_assignment PIN_N18 -to FMC_D[24]
+set_location_assignment PIN_E21 -to FMC_A[0]
+set_location_assignment PIN_M14 -to FMC_D[25]
+set_location_assignment PIN_F22 -to FMC_A[4]
+set_location_assignment PIN_E22 -to FMC_A[3]
+set_location_assignment PIN_M15 -to FMC_D[5]
+set_location_assignment PIN_G19 -to FMC_D[18]
+set_location_assignment PIN_G22 -to FMC_A[8]
+set_location_assignment PIN_G20 -to FMC_D[16]
+set_location_assignment PIN_J21 -to FMC_A[11]
+set_location_assignment PIN_J22 -to FMC_D[9]
+set_location_assignment PIN_H22 -to FMC_D[7]
+set_location_assignment PIN_H21 -to FMC_A[9]
+set_location_assignment PIN_AB9 -to FDCAN2_RX
+set_location_assignment PIN_AA10 -to FDCAN2_TX
+set_location_assignment PIN_V10 -to UART7_DE
+set_location_assignment PIN_AB6 -to UART7_RX
+set_location_assignment PIN_AB7 -to UART7_TX
+set_location_assignment PIN_AB18 -to SPI5_MISO
+set_location_assignment PIN_AB17 -to SPI5_MOSI
+set_location_assignment PIN_V17 -to SPI5_SCK
+set_location_assignment PIN_P4 -to TIM1_CH2
+set_location_assignment PIN_P5 -to TIM1_CH3N
+set_location_assignment PIN_N2 -to TIM2_CH4
+set_location_assignment PIN_R2 -to HRTIM_SCIN
+set_location_assignment PIN_R1 -to HRTIM_FLT1
+set_location_assignment PIN_W2 -to TIM1_CH2N
+set_location_assignment PIN_W1 -to HRTIM_CHA2
+set_location_assignment PIN_P8 -to TIM1_CH3
+set_location_assignment PIN_V3 -to TIM1_BKIN
+set_location_assignment PIN_U5 -to HRTIM_CHA1
+set_location_assignment PIN_U3 -to HRTIM_CHE2
+set_location_assignment PIN_U4 -to TIM15_CH1
+set_location_assignment PIN_V1 -to TIM15_CH2
+set_location_assignment PIN_U2 -to HRTIM_CHE1
+set_location_assignment PIN_R5 -to TIM1_CH1
+set_location_assignment PIN_P3 -to TIM1_CH1N
+set_location_assignment PIN_R3 -to TIM2_CH1
+set_location_assignment PIN_M1 -to PB7
+set_location_assignment PIN_M2 -to PG15
+set_location_assignment PIN_U1 -to PJ5
+set_location_assignment PIN_T3 -to PE4
+set_location_assignment PIN_N1 -to PJ14
+set_location_assignment PIN_N9 -to PH1
+set_location_assignment PIN_P1 -to PI15
+set_location_assignment PIN_N8 -to PJ12
+set_location_assignment PIN_T2 -to PJ1
+set_location_assignment PIN_T1 -to PJ3
+set_location_assignment PIN_R4 -to PJ4
+set_location_assignment PIN_N3 -to PJ13
+set_location_assignment PIN_T6 -to PJ2
+set_location_assignment PIN_T5 -to PJ0
+set_location_assignment PIN_R7 -to PJ6
+set_location_assignment PIN_B8 -to PE3
+set_location_assignment PIN_D10 -to PJ7
+set_location_assignment PIN_C6 -to PI11
+set_location_assignment PIN_K8 -to DSP_RESET
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity STM32H745 -section_id Top
+set_location_assignment PIN_AA8 -to MAX_LED[1]
+set_location_assignment PIN_AB8 -to MAX_LED[2]
+set_location_assignment PIN_Y10 -to MAX_LED[3]
+set_location_assignment PIN_AA9 -to MAX_LED[4]
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity STM32H745_fpga -section_id Top
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

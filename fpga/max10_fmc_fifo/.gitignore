@@ -1,0 +1,37 @@
+# Quartus
+db/
+incremental_db/
+output_files/
+*.srf
+*.jdi
+*.sta.rpt
+*.summary
+*.rpt
+*.qws
+*.sof
+*.pof
+*.jic
+
+# Qsys generated
+**/synthesis/
+**/simulation/
+**/testbench/
+*_hw.tcl
+*.qip
+*.sopcinfo
+
+# Misc
+*.bak
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+
+# Qsys edit temp files
+*.qsys_edit/
+qsys_edit/
+**/.qsys_edit/
+
+# Qsys edit auto-generated files
+*.nlv
+*.xml
