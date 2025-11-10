@@ -19,9 +19,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "FreeRTOS.h"
+#include "stm32h7xx_hal_uart.h"
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
+#include "usart.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -54,6 +56,13 @@ const osThreadAttr_t defaultTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
+/* Definitions for Led1Task */
+osThreadId_t Led1TaskHandle;
+const osThreadAttr_t Led1Task_attributes = {
+  .name = "Led1Task",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -61,6 +70,7 @@ const osThreadAttr_t defaultTask_attributes = {
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
+void StartLed1Task(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -94,6 +104,9 @@ void MX_FREERTOS_Init(void) {
   /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
+  /* creation of Led1Task */
+  Led1TaskHandle = osThreadNew(StartLed1Task, NULL, &Led1Task_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -120,6 +133,26 @@ void StartDefaultTask(void *argument)
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
+}
+
+/* USER CODE BEGIN Header_StartLed1Task */
+/**
+* @brief Function implementing the Led1Task thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartLed1Task */
+void StartLed1Task(void *argument)
+{
+  /* USER CODE BEGIN StartLed1Task */
+  /* Infinite loop */
+  for(;;)
+  {
+    HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+    HAL_UART_Transmit(&huart1, "Hello from task 1\r\n", 19, 0xffff);
+    osDelay(1000);
+  }
+  /* USER CODE END StartLed1Task */
 }
 
 /* Private application code --------------------------------------------------*/
