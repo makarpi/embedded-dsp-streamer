@@ -1,0 +1,102 @@
+# --------------------------
+# Global build and temp dirs
+# --------------------------
+build/
+Build/
+build-*/
+out/
+*.o
+*.elf
+*.map
+*.d
+*.lst
+*.axf
+*.bin
+*.hex
+
+# --------------------------
+# CMake artefacts
+# --------------------------
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+*.ninja
+*.a
+*.so
+
+# --------------------------
+# CubeMX generated junk
+# --------------------------
+*.launch
+*.uvprojx
+*.uvoptx
+*.ioc-backup
+*.mxproject
+*.settings/
+*.mxproject
+*.log
+
+# --------------------------
+# Eclipse / CubeIDE garbage
+# --------------------------
+.project
+.cproject
+.settings/
+Debug/
+Release/
+Middlewares/ST/STM32_USB_Device_Library/Class/.settings/
+Middlewares/ST/STM32_USB_Device_Library/Core/.settings/
+
+# --------------------------
+# Editor / OS files
+# --------------------------
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --------------------------
+# Python caches
+# --------------------------
+__pycache__/
+*.pyc
+
+# --------------------------
+# STM32 specific generated stuff
+# (kept minimal: only unsafe-to-track files)
+# --------------------------
+Drivers/CMSIS/docs/
+Drivers/CMSIS/NN/Examples/*/RTE/
+Drivers/CMSIS/DSP/DSP_Lib_TestSuite/
+Drivers/CMSIS/DSP/Examples/*/RTE/
+Drivers/CMSIS/DSP/RefLibs/
+Drivers/CMSIS/DSP/DspLibTest*/
+Drivers/CMSIS/docs/
+Drivers/CMSIS/RTOS2/Template/
+Drivers/CMSIS/RTOS/Template/
+Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/
+Drivers/CMSIS/CoreTemplate/
+Drivers/CMSIS/Device/ST/STM32H7xx/Source/Templates/*iar*/
+Drivers/CMSIS/Device/ST/STM32H7xx/Source/Templates/*arm*/
+Drivers/CMSIS/Device/ST/STM32H7xx/Source/Templates/linker/
+
+# --------------------------
+# FreeRTOS portable extras (not needed)
+# --------------------------
+Middlewares/Third_Party/FreeRTOS/Source/portable/*/MemMang/heap_1.c
+Middlewares/Third_Party/FreeRTOS/Source/portable/*/MemMang/heap_2.c
+Middlewares/Third_Party/FreeRTOS/Source/portable/*/MemMang/heap_3.c
+Middlewares/Third_Party/FreeRTOS/Source/portable/*/MemMang/heap_4.c
+Middlewares/Third_Party/FreeRTOS/Source/portable/*/MemMang/heap_5.c
+
+# --------------------------
+# Optional: ignore Objects/Libs
+# --------------------------
+*.a
+*.o
+*.obj
+*.lib
