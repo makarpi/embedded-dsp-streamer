@@ -158,7 +158,7 @@ else()
         --suppress=checkersReport # Cppcheck >=2.13
         --suppress=missingIncludeSystem
         --suppress=unusedFunction
-        --suppress=*:*/Core/*
+        --suppress=*:*/CM7/Core/*
         --suppress=*:*/Drivers/*
         --suppress=*:*/Common/*
         -D__GNUC__

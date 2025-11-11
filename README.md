@@ -1,5 +1,8 @@
 # embedded-dsp-streamer
 
+![Build](https://github.com/makarpi/embedded-dsp-streamer/actions/workflows/stm32.yml/badge.svg)
+[Latest release](https://github.com/makarpi/embedded-dsp-streamer/releases/latest)
+
 An experimental real-time DSP streaming pipeline built using an Intel MAX10 FPGA, an STM32H745 microcontroller and an NXP i.MX8M Mini running Linux.  
 The goal of this project is to explore high-throughput data acquisition across heterogeneous hardware and to visualize the resulting signals directly on an embedded display.
 
