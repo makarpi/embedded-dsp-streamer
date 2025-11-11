@@ -1,4 +1,4 @@
-name: STM32 CI
+name: Build and Test Workflow
 
 on:
   push:
@@ -26,8 +26,7 @@ jobs:
 
       - name: Build firmware
         working-directory: stm32/h745_fmc_udp
-        run: |
-          cmake --build build -j
+        run: ninja -C build
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -38,3 +37,9 @@ jobs:
             stm32/h745_fmc_udp/build/*.bin
             stm32/h745_fmc_udp/build/*.hex
             stm32/h745_fmc_udp/build/*.map
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build/H745_FMC_UDP_CM7.hex
