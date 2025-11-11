@@ -25,6 +25,8 @@ Makefile
 *.ninja
 *.a
 *.so
+!CMakeLists.txt
+!cmake/*.cmake
 
 # --------------------------
 # CubeMX generated junk

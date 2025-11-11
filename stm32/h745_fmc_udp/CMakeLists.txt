@@ -20,6 +20,7 @@ include(cmake/tidy.cmake)
 set(LINKER_SCRIPT "../CM7/stm32h745xx_flash_CM7.ld")
 set(MCPU ${MCPU_CORTEX_M7})
 set(MFPU ${MFPU_FPV5_D16})
+set(MFPU ${MFLOAT_ABI_HARDWARE})
 set(MFLOAT_ABI "")
 set(RUNTIME_LIBRARY ${RUNTIME_LIBRARY_REDUCED_C})
 set(RUNTIME_LIBRARY_SYSCALLS ${RUNTIME_LIBRARY_SYSCALLS_MINIMAL})
@@ -27,7 +28,7 @@ set(RUNTIME_LIBRARY_SYSCALLS ${RUNTIME_LIBRARY_SYSCALLS_MINIMAL})
 set(CMAKE_EXECUTABLE_SUFFIX ".elf")
 set(CMAKE_STATIC_LIBRARY_SUFFIX ".a")
 set(CMAKE_C_FLAGS "${MCPU} -std=gnu11 ${MFPU} ${MFLOAT_ABI} ${RUNTIME_LIBRARY} -mthumb -Wall -Werror")
-set(CMAKE_EXE_LINKER_FLAGS "-T${LINKER_SCRIPT} ${RUNTIME_LIBRARY_SYSCALLS} -Wl,-Map=test.map -Wl,--gc-sections -static -Wl,--start-group -lc -lm -Wl,--end-group")
+set(CMAKE_EXE_LINKER_FLAGS "-T${LINKER_SCRIPT} ${RUNTIME_LIBRARY_SYSCALLS} -Wl,-Map=${PROJECT_NAME}.map -Wl,--gc-sections -static -Wl,--start-group -lc -lm -Wl,--end-group")
 set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -x assembler-with-cpp")
 
 add_compile_definitions(STM32H745xx=1)
@@ -43,7 +44,7 @@ set(PROJECT_SOURCES
     CM7/Core/Src/gpio.c
     # CM7/Core/Src/eth.c
     CM7/Core/Src/fmc.c
-    # CM7/Core/Src/freertos.c
+    CM7/Core/Src/freertos.c
     CM7/Core/Src/usart.c
     CM7/Core/Src/stm32h7xx_it.c
     CM7/Core/Src/stm32h7xx_hal_msp.c
@@ -79,6 +80,16 @@ set(PROJECT_SOURCES
     Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sdram.c
     Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c
     Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c
+    Middlewares/Third_Party/FreeRTOS/Source/croutine.c
+    Middlewares/Third_Party/FreeRTOS/Source/event_groups.c
+    Middlewares/Third_Party/FreeRTOS/Source/list.c
+    Middlewares/Third_Party/FreeRTOS/Source/queue.c
+    Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c
+    Middlewares/Third_Party/FreeRTOS/Source/tasks.c
+    Middlewares/Third_Party/FreeRTOS/Source/timers.c
+    Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c
+    Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
+    Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
@@ -88,13 +99,33 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     "Drivers/STM32H7xx_HAL_Driver/Inc/Legacy"
     "Middlewares/Third_Party/FreeRTOS/Source/include"
     "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
-    "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+    "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1"
     "Drivers/CMSIS/Device/ST/STM32H7xx/Include"
     "Drivers/CMSIS/Include"
 )
 
 # target_link_libraries(${PROJECT_NAME} PRIVATE STM_HAL)
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_SIZE} $<TARGET_FILE:${CMAKE_PROJECT_NAME}>)
+
+# Paths to output formats
+set(ELF_FILE $<TARGET_FILE:${PROJECT_NAME}>)
+set(BIN_FILE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.bin)
+set(HEX_FILE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.hex)
+
+# Convert ELF -> BIN
+add_custom_command(TARGET ${PROJECT_NAME}
+    POST_BUILD
+    COMMAND ${CMAKE_OBJCOPY} -O binary ${ELF_FILE} ${BIN_FILE}
+    COMMENT "Generating ${PROJECT_NAME}.bin"
+)
+
+# Convert ELF -> HEX
+add_custom_command(TARGET ${PROJECT_NAME}
+    POST_BUILD
+    COMMAND ${CMAKE_OBJCOPY} -O ihex ${ELF_FILE} ${HEX_FILE}
+    COMMENT "Generating ${PROJECT_NAME}.hex"
+)
+
 
 # Programming target
 find_program(STM32_PROGRAMMER_CLI STM32_Programmer_CLI)
