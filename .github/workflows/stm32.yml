@@ -1,4 +1,4 @@
-name: Build STM32
+name: STM32 CI
 
 on:
   push:
@@ -7,32 +7,34 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-stm32:
+  stm32-ci:
     runs-on: ubuntu-latest
 
+    container:
+      image: therisktaker/arm-none-eabi-14.2-and-tools:latest
+
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Build Docker image
-      run: docker build -t stm32-build-env -f stm32/h745_fmc_udp/Dockerfile .
+      - name: Configure CMake
+        working-directory: stm32/h745_fmc_udp
+        run: |
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_TOOLCHAIN_FILE=cmake/arm-gcc-toolchain.cmake \
+            -DCMAKE_BUILD_TYPE=Release
 
-    - name: Build firmware (CMake)
-      run: |
-        docker run --rm \
-          -v ${{ github.workspace }}:/workspace \
-          -w /workspace/stm32/h745_fmc_udp \
-          stm32-build-env \
-          bash -c "
-            cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE="cmake/arm-gcc-toolchain.cmake"
-            ninja -C build
-          "
+      - name: Build firmware
+        working-directory: stm32/h745_fmc_udp
+        run: |
+          cmake --build build -j
 
-    - name: Upload artifacts (ELF/HEX/BIN)
-      uses: actions/upload-artifact@v4
-      with:
-        name: stm32-firmware
-        path: |
-          stm32/h745_fmc_udp/build/*.elf
-          stm32/h745_fmc_udp/build/*.bin
-          stm32/h745_fmc_udp/build/*.hex
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: h745_firmware
+          path: |
+            stm32/h745_fmc_udp/build/*.elf
+            stm32/h745_fmc_udp/build/*.bin
+            stm32/h745_fmc_udp/build/*.hex
+            stm32/h745_fmc_udp/build/*.map
