@@ -80,7 +80,6 @@ Drivers/CMSIS/DSP/DspLibTest*/
 Drivers/CMSIS/docs/
 Drivers/CMSIS/RTOS2/Template/
 Drivers/CMSIS/RTOS/Template/
-Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/
 Drivers/CMSIS/CoreTemplate/
 Drivers/CMSIS/Device/ST/STM32H7xx/Source/Templates/*iar*/
 Drivers/CMSIS/Device/ST/STM32H7xx/Source/Templates/*arm*/
