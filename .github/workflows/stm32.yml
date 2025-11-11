@@ -1,0 +1,38 @@
+name: Build STM32
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-stm32:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Build Docker image
+      run: docker build -t stm32-build-env -f stm32/h745_fmc_udp/Dockerfile .
+
+    - name: Build firmware (CMake)
+      run: |
+        docker run --rm \
+          -v ${{ github.workspace }}:/workspace \
+          -w /workspace/stm32/h745_fmc_udp \
+          stm32-build-env \
+          bash -c "
+            cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE="cmake/arm-gcc-toolchain.cmake"
+            ninja -C build
+          "
+
+    - name: Upload artifacts (ELF/HEX/BIN)
+      uses: actions/upload-artifact@v4
+      with:
+        name: stm32-firmware
+        path: |
+          stm32/h745_fmc_udp/build/*.elf
+          stm32/h745_fmc_udp/build/*.bin
+          stm32/h745_fmc_udp/build/*.hex
