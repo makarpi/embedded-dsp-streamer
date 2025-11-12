@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: therisktaker/arm-none-eabi-14.2-and-tools:latest
+      image: makarpi/stm32cmakegcc:latest
 
     steps:
       - name: Checkout repository
