@@ -9,6 +9,7 @@ void test_add_should_return_correct_sum(void)
     TEST_ASSERT_EQUAL_FLOAT(5.0f, add(2.0f, 3.0f));
     TEST_ASSERT_EQUAL_FLOAT(-1.0f, add(2.0f, -3.0f));
     TEST_ASSERT_EQUAL_FLOAT(0.0f, add(-1.0f, 1.0f));
+    TEST_ASSERT_EQUAL_FLOAT(0.0f, add(-10.0f, 10.0f));
 }
 
 int main(void)
