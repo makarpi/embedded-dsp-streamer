@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: makarpi/stm32cmakegcc:latest
+      image: makarpi/stm32cmakegcc:v1.0
 
     steps:
       - name: Checkout repository
