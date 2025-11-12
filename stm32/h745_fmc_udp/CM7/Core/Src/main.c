@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "my_math/my_math.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -154,8 +154,18 @@ Error_Handler();
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  float result_add = add(5.0f, 3.0f);
+  float result_sub = subtract(5.0f, 3.0f);
+  float result_mul = multiply(5.0f, 3.0f);
+  float result_div = divide(5.0f, 0.0f); //
+  float result_sum;
   while (1)
   {
+    result_sum = result_add + result_sub + result_mul + result_div;
+    if(result_sum > 1000.0f)
+    {
+      result_sum = 0.0f;
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

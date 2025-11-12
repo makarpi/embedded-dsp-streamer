@@ -1,4 +1,4 @@
-name: Build and Test Workflow
+name: Build and Test STM32 Project
 
 on:
   push:
@@ -7,9 +7,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  stm32-ci:
+  build-firmware:
     runs-on: ubuntu-latest
-
     container:
       image: makarpi/stm32cmakegcc:v1.0
 
@@ -17,23 +16,38 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Configure CMake
+      - name: Build STM32 firmware
         working-directory: stm32/h745_fmc_udp
         run: |
-          cmake -S . -B build -G Ninja \
-            -DCMAKE_TOOLCHAIN_FILE=cmake/arm-gcc-toolchain.cmake \
-            -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=cmake/arm-gcc-toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+          ninja -C build
 
-      - name: Build firmware
-        working-directory: stm32/h745_fmc_udp
-        run: ninja -C build
-
-      - name: Upload build artifacts
+      - name: Upload STM32 artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: h745_firmware
-          path: |
-            stm32/h745_fmc_udp/build/*.bin
-            stm32/h745_fmc_udp/build/*.hex
-            stm32/h745_fmc_udp/build/*.map
-            
+          name: stm32_h745_firmware
+          path: stm32/h745_fmc_udp/build/*.hex
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:22.04  # lekki obraz na hostowe testy
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get install -y build-essential cmake ninja-build
+
+      - name: Build unit tests (Unity)
+        working-directory: stm32/h745_fmc_udp/tests
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_C_COMPILER=gcc
+          ninja -C build
+
+      - name: Run unit tests
+        working-directory: stm32/h745_fmc_udp/tests
+        run: ./build/bin/run_tests

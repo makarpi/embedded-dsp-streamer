@@ -90,11 +90,13 @@ set(PROJECT_SOURCES
     Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c
     Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
     Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c
+    CM7/App/my_math/my_math.c
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE
     "CM7/Core/Inc"
+    "CM7/App"
     "Drivers/STM32H7xx_HAL_Driver/Inc"
     "Drivers/STM32H7xx_HAL_Driver/Inc/Legacy"
     "Middlewares/Third_Party/FreeRTOS/Source/include"
