@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "mdma.h"
 #include "usart.h"
 #include "gpio.h"
 #include "fmc.h"
@@ -137,10 +138,12 @@ Error_Handler();
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_MDMA_Init();
   MX_FMC_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  hsram1.hmdma = &hmdma_mdma_channel0_sw_0;
+  hmdma_mdma_channel0_sw_0.Parent = &hsram1;
   /* USER CODE END 2 */
 
   /* Init scheduler */

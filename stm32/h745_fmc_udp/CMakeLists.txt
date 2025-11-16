@@ -43,6 +43,7 @@ set(PROJECT_SOURCES
     CM7/Core/Src/main.c
     CM7/Core/Src/gpio.c
     # CM7/Core/Src/eth.c
+    CM7/Core/Src/mdma.c
     CM7/Core/Src/fmc.c
     CM7/Core/Src/freertos.c
     CM7/Core/Src/usart.c

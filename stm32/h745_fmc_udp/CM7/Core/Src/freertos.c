@@ -25,7 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "fmc.h"
+extern MDMA_HandleTypeDef hmdma_mdma_channel0_sw_0;
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -35,6 +36,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define SRAM_BANK_ADDR0 ((uint32_t)0x60000000)
 
 /* USER CODE END PD */
 
@@ -114,10 +116,37 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
+  uint32_t write_buffer[16] = {0};
+    
+  uint32_t read_buffer[16] = {0};
+  uint32_t timeout = 0xFF;
+
+  HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+  HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
+  write_buffer[0] = 0x100000;
+  write_buffer[1] = 0xBABADEDA;
+  HAL_SRAM_Write_DMA(&hsram1,(uint32_t*) SRAM_BANK_ADDR0, (uint32_t*) write_buffer, 2);
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+    HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
+    HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
+    HAL_GPIO_TogglePin(LED4_GPIO_Port, LED4_Pin);
+
+    
+
+    while (HAL_MDMA_GetState(&hmdma_mdma_channel0_sw_0) != HAL_MDMA_STATE_READY)
+    {
+    	timeout--;
+    	if(timeout == 0)
+    	{
+    		break;
+    	}
+    }
+
+    HAL_SRAM_Read_DMA(&hsram1,(uint32_t*) SRAM_BANK_ADDR0, (uint32_t*) read_buffer, 4);
+    osDelay(10);
   }
   /* USER CODE END StartDefaultTask */
 }
