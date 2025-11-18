@@ -1,173 +1,118 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>embedded-dsp-streamer</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #111;
-            color: #eee;
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
-        }
-        header {
-            background: #1e1e1e;
-            padding: 30px;
-            text-align: center;
-            border-bottom: 2px solid #333;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.4rem;
-            color: #4cc2ff;
-        }
-        header p {
-            margin-top: 10px;
-            color: #ccc;
-        }
-        section {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: auto;
-        }
-        h2 {
-            color: #4cc2ff;
-            margin-top: 50px;
-        }
-        code {
-            background: #222;
-            padding: 4px 6px;
-            border-radius: 4px;
-            color: #9df59d;
-        }
-        .box {
-            background: #1a1a1a;
-            padding: 20px;
-            border-left: 4px solid #4cc2ff;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #555;
-            font-size: 0.9rem;
-        }
-        a {
-            color: #4cc2ff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        ul {
-            padding-left: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embedded DSP Streamer – Documentation</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        background: #0d1117;
+        color: #e6edf3;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+    header {
+        background: #161b22;
+        padding: 25px 40px;
+        border-bottom: 1px solid #30363d;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 32px;
+        font-weight: 600;
+    }
+    header p {
+        margin: 5px 0 0;
+        color: #8b949e;
+        font-size: 17px;
+    }
+    .container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 0 20px;
+    }
+    h2 {
+        margin-top: 40px;
+        border-left: 4px solid #58a6ff;
+        padding-left: 10px;
+        font-weight: 500;
+    }
+    a {
+        color: #58a6ff;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    .card {
+        background: #161b22;
+        border: 1px solid #30363d;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+    }
+</style>
 </head>
-<body>
 
+<body>
 <header>
-    <h1>embedded-dsp-streamer</h1>
-    <p>Projekt DSP na STM32, MAX10, i.MX8 / Zynq. Strumieniowanie danych, ADC, FMC, UDP, CI/CD, testy.</p>
+    <h1>Embedded DSP Streamer</h1>
+    <p>High-performance FPGA + MCU DSP pipeline with FMC, UDP streaming and real-time processing.</p>
 </header>
 
-<section>
-    <h2>📌 O projekcie</h2>
-    <p>
-        <strong>embedded-dsp-streamer</strong> to modularna platforma do akwizycji danych, przetwarzania DSP 
-        i wysyłania strumieni danych przez UDP. Obecnie składa się z kilku głównych części:
-    </p>
+<div class="container">
 
-    <ul>
-        <li>🟦 <strong>STM32H745</strong> – FMC + MDMA + FreeRTOS + UDP</li>
-        <li>🟩 <strong>MAX10 FPGA</strong> – logika DSP + generatory NCO</li>
-        <li>🟥 <strong>Platforma docelowa</strong> – i.MX8 / Zynq / Linux</li>
-        <li>🟨 <strong>CI/CD</strong> – GitHub Actions, automatyczny build + firmware artifacts</li>
-        <li>🟧 <strong>Testy jednostkowe</strong> – Unity + CMock (w budowie)</li>
-    </ul>
-
-    <div class="box">
-        Projekt rozwijany jest w duchu <strong>clean embedded architecture</strong>: warstwa HAL jest mockowana, logika aplikacji testowana jednostkowo, a firmware budowane w CI.
+    <h2>📘 Project Overview</h2>
+    <div class="card">
+        <p>
+            <strong>Embedded DSP Streamer</strong> is a modular signal-processing system designed around:
+        </p>
+        <ul>
+            <li>🖥️ <strong>STM32H745 CM7</strong> for high-speed control and real-time data acquisition</li>
+            <li>🔧 <strong>Intel MAX 10 FPGA</strong> (via FMC connector)</li>
+            <li>🌐 <strong>UDP streaming</strong> to the i.MX8 application processor</li>
+            <li>⚡ High-throughput MDMA + FMC synchronous transfers</li>
+        </ul>
+        <p>
+            The project includes firmware, HDL, DSP blocks, CI/CD, and automated testing.
+        </p>
     </div>
 
-
-    <h2>🚀 Funkcje</h2>
-    <ul>
-        <li>Konfiguracja FMC (NOR/SRAM) + wysokowydajne MDMA</li>
-        <li>Strumieniowanie danych do 200–300 Mbps (celowane)</li>
-        <li>UDP + FreeRTOS + zero-copy socket buffers</li>
-        <li>Integracja z własnymi blokami FPGA (NCO, filtry, DSP)</li>
-        <li>Jednostkowe testy logiki DSP i warstw abstrakcji</li>
-        <li>W pełni automatyczny build w GitHub Actions</li>
-    </ul>
-
-
-    <h2>🛠️ CI/CD – GitHub Actions</h2>
-    <p>
-        Projekt używa własnego obrazu Docker (<code>makarpi/stm32cmakegcc:v1.0</code>) zawierającego:
-    </p>
-
-    <ul>
-        <li>ARM GCC 14.2</li>
-        <li>CMake + Ninja</li>
-        <li>Cppcheck + Clang-Format + Clang-Tidy</li>
-    </ul>
-
-    <div class="box">
-        Na każdą zmianę w <code>main</code> lub <code>dev</code> wykonywany jest build i upload bin/hex/map jako artefakty.
+    <h2>📚 Documentation</h2>
+    <div class="card">
+        <ul>
+            <li><a href="architecture.md">System Architecture</a></li>
+            <li><a href="setup.md">Setup & Environment</a></li>
+            <li><a href="roadmap.md">Project Roadmap</a></li>
+        </ul>
     </div>
 
+    <h2>🧪 CI/CD & Testing</h2>
+    <div class="card">
+        <p>
+            The project uses GitHub Actions for:
+        </p>
+        <ul>
+            <li>✔ STM32 firmware builds</li>
+            <li>✔ Unit tests (Unity)</li>
+            <li>✔ Static analysis (Cppcheck)</li>
+            <li>✔ Automatic releases with .bin/.hex artifacts</li>
+        </ul>
+    </div>
 
-    <h2>🧪 Testy jednostkowe</h2>
-    <p>Testy dostępne w: <code>stm32/h745_fmc_udp/tests/</code></p>
+    <h2>🚀 Repository</h2>
+    <div class="card">
+        <p>
+            Source code on GitHub: <br>
+            <a href="https://github.com/makarpi/embedded-dsp-streamer">
+                github.com/makarpi/embedded-dsp-streamer
+            </a>
+        </p>
+    </div>
 
-    <p>Framework:</p>
-    <ul>
-        <li>Unity (test runner)</li>
-        <li>CMock (mocki HAL) – w przygotowaniu</li>
-        <li>Budowanie testów na hosta (Linux/Windows)</li>
-    </ul>
-
-
-    <h2>📂 Struktura repozytorium</h2>
-<pre><code>embedded-dsp-streamer/
-├── stm32/
-│   └── h745_fmc_udp/        # Firmware STM32H745
-│       ├── CM7/             
-│       ├── Drivers/
-│       ├── Middlewares/
-│       ├── tests/           # Testy Unity + mocks
-│       └── build/
-├── fpga-max10/              # Logika FPGA + NCO (w budowie)
-├── imx8/                    # Warstwa odbiornika na Linux (w planach)
-└── docs/                    # Ta strona GitHub Pages
-</code></pre>
-
-
-    <h2>📥 Firmware</h2>
-    <p>
-        Najnowsze biny i hex’y znajdziesz tutaj:
-    </p>
-    <p>
-        <a href="../actions" target="_blank">GitHub Actions → Artifacts</a>
-    </p>
-
-
-    <h2>📞 Kontakt</h2>
-    <p>
-        Jeśli masz pytania lub chcesz zgłosić problem, otwórz Issue:<br>
-        <a href="../issues" target="_blank">GitHub Issues</a>
-    </p>
-
-</section>
-
-<footer>
-    © 2025 embedded-dsp-streamer — Open Source Project
-</footer>
+</div>
 
 </body>
 </html>
