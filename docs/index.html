@@ -1,118 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Embedded DSP Streamer – Documentation</title>
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, sans-serif;
-        background: #0d1117;
-        color: #e6edf3;
-        margin: 0;
-        padding: 0;
-        line-height: 1.6;
-    }
-    header {
-        background: #161b22;
-        padding: 25px 40px;
-        border-bottom: 1px solid #30363d;
-    }
-    header h1 {
-        margin: 0;
-        font-size: 32px;
-        font-weight: 600;
-    }
-    header p {
-        margin: 5px 0 0;
-        color: #8b949e;
-        font-size: 17px;
-    }
-    .container {
-        max-width: 900px;
-        margin: 50px auto;
-        padding: 0 20px;
-    }
-    h2 {
-        margin-top: 40px;
-        border-left: 4px solid #58a6ff;
-        padding-left: 10px;
-        font-weight: 500;
-    }
-    a {
-        color: #58a6ff;
-        text-decoration: none;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
-    .card {
-        background: #161b22;
-        border: 1px solid #30363d;
-        padding: 20px;
-        margin: 20px 0;
-        border-radius: 8px;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded DSP Streamer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: #1f2937;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: white;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        h2 {
+            color: #1f2937;
+            margin-top: 2rem;
+        }
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 2rem;
+        }
+        section {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        pre {
+            background: #eee;
+            padding: 1rem;
+            overflow: auto;
+            border-radius: 6px;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #777;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .badge {
+            display: inline-block;
+            margin: 0.3rem;
+        }
+    </style>
 </head>
-
 <body>
+
 <header>
     <h1>Embedded DSP Streamer</h1>
-    <p>High-performance FPGA + MCU DSP pipeline with FMC, UDP streaming and real-time processing.</p>
+    <p>A high-performance DSP data streaming system using STM32H7, MAX10 FPGA and i.MX8.</p>
 </header>
 
-<div class="container">
+<main>
 
-    <h2>📘 Project Overview</h2>
-    <div class="card">
-        <p>
-            <strong>Embedded DSP Streamer</strong> is a modular signal-processing system designed around:
-        </p>
-        <ul>
-            <li>🖥️ <strong>STM32H745 CM7</strong> for high-speed control and real-time data acquisition</li>
-            <li>🔧 <strong>Intel MAX 10 FPGA</strong> (via FMC connector)</li>
-            <li>🌐 <strong>UDP streaming</strong> to the i.MX8 application processor</li>
-            <li>⚡ High-throughput MDMA + FMC synchronous transfers</li>
-        </ul>
-        <p>
-            The project includes firmware, HDL, DSP blocks, CI/CD, and automated testing.
-        </p>
-    </div>
+<section>
+    <h2>🚀 Project Overview</h2>
+    <p>
+        The <strong>Embedded DSP Streamer</strong> is a modular embedded pipeline for high-speed signal
+        acquisition and streaming. It combines:
+    </p>
 
-    <h2>📚 Documentation</h2>
-    <div class="card">
-        <ul>
-            <li><a href="architecture.md">System Architecture</a></li>
-            <li><a href="setup.md">Setup & Environment</a></li>
-            <li><a href="roadmap.md">Project Roadmap</a></li>
-        </ul>
-    </div>
+    <ul>
+        <li><strong>STM32H745</strong> (FMC + MDMA data acquisition)</li>
+        <li><strong>Intel MAX10 FPGA</strong> (DSP, NCO, custom logic)</li>
+        <li><strong>i.MX8</strong> embedded Linux SBC (UDP streaming & processing)</li>
+    </ul>
 
-    <h2>🧪 CI/CD & Testing</h2>
-    <div class="card">
-        <p>
-            The project uses GitHub Actions for:
-        </p>
-        <ul>
-            <li>✔ STM32 firmware builds</li>
-            <li>✔ Unit tests (Unity)</li>
-            <li>✔ Static analysis (Cppcheck)</li>
-            <li>✔ Automatic releases with .bin/.hex artifacts</li>
-        </ul>
-    </div>
+    <p>
+        The goal is to build a reliable, low-latency, real-time signal chain for experiments, DSP
+        prototyping and hardware learning.
+    </p>
+</section>
 
-    <h2>🚀 Repository</h2>
-    <div class="card">
-        <p>
-            Source code on GitHub: <br>
-            <a href="https://github.com/makarpi/embedded-dsp-streamer">
-                github.com/makarpi/embedded-dsp-streamer
-            </a>
-        </p>
-    </div>
+<section>
+    <h2>📡 System Architecture</h2>
+    <img src="architecture.png" alt="System architecture diagram" style="width:100%; max-width:800px; border-radius:10px;">
+    <p style="color:#777; font-size:0.9rem;">(Optional: place architecture.png inside /docs folder)</p>
+</section>
 
-</div>
+<section>
+    <h2>⚙️ Features</h2>
+    <ul>
+        <li>High-speed FMC parallel interface between STM32 and MAX10 FPGA</li>
+        <li>Real-time DSP logic on FPGA (NCO, filters, modulators, etc.)</li>
+        <li>i.MX8 UDP streaming at 1 Gbps+</li>
+        <li>Fully automated CI/CD using GitHub Actions</li>
+        <li>Unit tests (Unity + CMock)</li>
+        <li>CMake-based build system for STM32, FPGA, and tests</li>
+    </ul>
+</section>
+
+<section>
+    <h2>🏗️ Build Instructions (STM32)</h2>
+    <pre>
+cd stm32/h745_fmc_udp
+cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=cmake/arm-gcc-toolchain.cmake
+ninja -C build
+    </pre>
+</section>
+
+<section>
+    <h2>🤖 CI/CD</h2>
+    <p>The repository includes a complete GitHub Actions pipeline:</p>
+
+    <ul>
+        <li>✔ Build firmware with arm-none-eabi-gcc</li>
+        <li>✔ Generate .elf / .hex / .bin artifacts</li>
+        <li>✔ Run unit tests on host</li>
+        <li>✔ Cppcheck static analysis</li>
+        <li>✔ Release packaging</li>
+    </ul>
+
+    <p>Latest build status:</p>
+    <img class="badge" src="https://img.shields.io/github/actions/workflow/status/YOUR_USERNAME/embedded-dsp-streamer/build.yml">
+</section>
+
+<section>
+    <h2>🧪 Unit Testing</h2>
+    <p>Tests use Unity + CMock and run on the native build (not MCU):</p>
+    <pre>
+cd tests
+cmake -S . -B build
+cmake --build build
+./build/run_tests
+    </pre>
+</section>
+
+<section>
+    <h2>📄 License</h2>
+    <p>This project is open source and licensed under the MIT license.</p>
+</section>
+
+</main>
+
+<footer>
+    <p>© 2025 Embedded DSP Streamer Project</p>
+</footer>
 
 </body>
 </html>
